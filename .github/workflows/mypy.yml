@@ -1,0 +1,16 @@
+  - name: Mypy Check
+  # You may pin to the exact commit or the version.
+  # uses: jpetrucciani/mypy-check@f7a31184677eec02e0683cc0d31c5d5331d5ab5c
+  uses: jpetrucciani/mypy-check@0.991
+  with:
+    # File or directory to run mypy on
+    path: # optional, default is .
+    # Optional mypy flags (refer to `mypy --help`)
+    mypy_flags: # optional, default is 
+    # Optional, if not empty: parameters to pass to `pip install` before running mypy
+    requirements: # optional, default is 
+    # Optional, if not empty: a file to pass to `pip install -r` before running mypy
+    requirements_file: # optional, default is 
+    # Optional, Python version to use
+    python_version: # optional, default is 3.10
+          
