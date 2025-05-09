@@ -1,21 +1,29 @@
-            - name: _Mypy
-  # You may pin to the exact commit or the version.
-  # uses: josh-programmieren/js-python@3f5998bef9a47d0554be07c59f562be3829dbb0f
-  uses: josh-programmieren/js-python@7.0.0
-  with:
-    # Options passed to mypy. Use `mypy --help` to see available options.
+name: mypy
 
-    options: # optional
-    # Explicit paths to run mypy on. Defaults to the current directory.
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-    paths: # optional, default is .
-    # Mypy version to use (PEP440) - e.g. "0.910"
+jobs:
+  type-check:
+    runs-on: ubuntu-latest
 
-    version: # optional, default is 
-    # Whether to automatically install missing library stub packages. ('yes'|'no', default: 'yes')
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
 
-    install_types: # optional, default is yes
-    # Whether to attempt to install project dependencies into mypy environment. ('yes'|'no', default: 'yes')
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
 
-    install_project_dependencies: # optional, default is yes
-          
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install mypy
+
+    - name: Run mypy
+      run: |
+        mypy .
